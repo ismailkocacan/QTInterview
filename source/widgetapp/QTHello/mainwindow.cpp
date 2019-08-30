@@ -28,7 +28,18 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     QString adSoyad = ui->edtAdSoyad->text().trimmed();
+    QString yasStr = ui->spnBoxYas->text();
     qint32 yas = ui->spnBoxYas->value();
+
+    if (yasStr.isEmpty()){
+       QMessageBox::warning(this,"uyarı","Yaş Girin");
+       return;
+    }
+
+    if (adSoyad.isEmpty()){
+       QMessageBox::warning(this,"uyarı","Ad Soyad Girin");
+       return;
+    }
 
    // PPerson kisi = new Person(adSoyad,yas);
     QScopedPointer<Person> kisi(new Person(adSoyad,yas)); // delete etmeye gerek yok, otomatik silinecek(smart pointer).
